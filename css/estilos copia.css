@@ -1,0 +1,857 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+/* =========================================================
+   VARIABLES (cambia aquí colores y tamaños para todo el sitio)
+   ========================================================= */
+:root {
+  --acento: #7f8cff;
+  --rosa: #ff9ecb;
+  --titulo: #5a5a8a;
+  --texto: #2f2f2f;
+  --peligro: #ff6b6b;
+  --borde: rgba(0, 0, 0, 0.2);
+  --fuente: "Satisfy", "Segoe UI", Arial, sans-serif;
+
+  --fs-base: 1.25rem;   /* texto general */
+  --fs-campo: 1.3rem;   /* inputs, textarea y select */
+  --fs-boton: 1.1rem;   /* botones */
+  --fs-peque: 1.1rem;   /* textos secundarios */
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fuente);
+  font-size: var(--fs-base);
+  background: linear-gradient(135deg, #f5f7ff, #fdf7f8);
+  color: var(--texto);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 35px;
+  font-weight: 600;
+  color: var(--titulo);
+}
+
+/* Campos de formulario: misma fuente y tamaño legible en todos */
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: var(--fs-campo);
+}
+
+button {
+  font-family: inherit;
+  font-size: var(--fs-boton);
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  border-radius: 50px;
+  background: transparent;
+}
+
+/* Scroll */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d6d6f5;
+  border-radius: 10px;
+}
+
+/* =========================================================
+   CONTENEDORES
+   ========================================================= */
+.contenedor {
+  width: 75%;
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.main-frame {
+  position: relative;
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================================
+   BARRAS SUPERIORES
+   ========================================================= */
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid var(--borde);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.top-bar-buscar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--borde);
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.top-bar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar-libro {
+  padding: 7px 15px;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.botones-derecha,
+.acciones-derecha {
+  display: flex;
+  gap: 10px;
+}
+
+.logo-mini {
+  height: 40px;
+  width: auto;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.8));
+}
+
+.logo-mini:hover {
+  transform: scale(1.05);
+}
+
+#usuarioNombre {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin-right: 15px;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.btn-principal,
+.btn-editar,
+.btn-volver {
+  padding: 8px 20px;
+  border-radius: 7px;
+  border: 1px solid var(--borde);
+  background: rgba(0, 0, 0, 0.05);
+  font-size: var(--fs-boton);
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.btn-editar,
+.btn-volver {
+  padding: 8px 14px;
+  border-radius: 10px;
+}
+
+.btn-principal:hover,
+.btn-editar:hover,
+.btn-volver:hover {
+  background: rgba(127, 140, 255, 0.2);
+  border-color: var(--acento);
+}
+
+.btn-alerta {
+  padding: 6px 20px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  background: rgba(255, 0, 0, 0.05);
+  color: var(--peligro);
+  font-size: var(--fs-boton);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-alerta:hover,
+#confirmarSi:hover {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-completar {
+  margin-top: 20px;
+  padding: 5px 10px;
+}
+
+.btn-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(30, 34, 55, 0.9);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.btn-top:hover {
+  background: rgba(127, 140, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   BUSCADOR
+   ========================================================= */
+.buscador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 8px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   LISTAS DE LIBROS
+   ========================================================= */
+
+/* Tarjeta en lista (horizontal) */
+.libro {
+  display: flex;
+  gap: 15px;
+  padding: 18px;
+  margin-bottom: 18px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.libro:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+.libro img {
+  width: 75px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info h3 {
+  margin-bottom: 6px;
+  font-size: 1.4em;
+  color: #4a4a6a;
+}
+
+.autor {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #8a8ab0;
+}
+
+.detalles {
+  margin-top: 4px;
+  font-size: var(--fs-peque);
+  color: #b0b0c5;
+}
+
+/* Tarjeta en cuadrícula (vertical) */
+.libro-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 12px;
+  text-align: center;
+  border-radius: 16px;
+  border: 1px solid var(--borde);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.libro-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.libro-item .titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.6em;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1.3em;
+  text-align: center;
+}
+
+.libro-item .titulo span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.libro-content {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.libro-content img {
+  width: 70px;
+  border-radius: 10px;
+}
+
+.libro-content .info {
+  font-size: var(--fs-peque);
+  opacity: 0.7;
+}
+
+.libro-portada {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.libro-portada img {
+  width: 100%;
+  max-width: 180px;
+  border-radius: 12px;
+}
+
+/* Separadores por año / mes */
+.separador-anio,
+.separador-mes {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.separador-anio::before,
+.separador-anio::after,
+.separador-mes::before,
+.separador-mes::after {
+  content: "";
+  flex: 1;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.separador-anio {
+  margin: 30px 0 10px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.separador-anio span {
+  padding: 0 15px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.separador-anio::before,
+.separador-anio::after {
+  height: 2px;
+}
+
+.separador-mes {
+  margin: 15px 0 5px;
+}
+
+.separador-mes span {
+  padding: 0 10px;
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.separador-mes::before,
+.separador-mes::after {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================================
+   FICHA (formulario de edición)
+   ========================================================= */
+.ficha {
+  display: flex;
+}
+
+.ficha img,
+.portada-ficha {
+  width: 100%;
+  max-width: 210px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.ficha img {
+  margin-right: 30px;
+}
+
+.portada-ficha {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.portada-ficha:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.formulario-ficha {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 20px;
+}
+
+.formulario-ficha input,
+.formulario-ficha textarea {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  color: #000;
+}
+
+.formulario button {
+  margin-top: 15px;
+}
+
+.acciones-ficha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Campos con estilo "hundido" */
+.input-custom,
+.input-fecha {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--texto);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.input-custom:focus,
+.input-fecha:focus {
+  outline: none;
+  border-color: var(--acento);
+  box-shadow: 0 0 8px rgba(127, 140, 255, 0.4);
+}
+
+.select-rating {
+  display: block;
+  width: 100px;
+  margin: 0 auto;
+  padding: 6px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000;
+  background: rgba(127, 140, 255, 0.15);
+  border: 2px solid #ff6161;
+  border-radius: 12px;
+  transition: 0.2s ease;
+}
+
+.select-rating:focus {
+  outline: none;
+  border-color: var(--rosa);
+  box-shadow: 0 0 8px rgba(255, 158, 203, 0.5);
+}
+
+/* =========================================================
+   DETALLE DE LIBRO
+   ========================================================= */
+.libro-card {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 2em;
+  padding: 30px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+}
+
+.portada-libro {
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.libro-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.titulo-libro {
+  margin-bottom: 35px;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--titulo);
+  text-align: left;
+}
+
+.libro-card .titulo-libro {
+  margin: 20px 0 0;
+}
+
+.titulo-original {
+  font-size: var(--fs-peque);
+  opacity: 0.6;
+}
+
+.fechas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.label {
+  display: block;
+  font-size: var(--fs-peque);
+  opacity: 0.6;
+}
+
+/* Días de lectura */
+.dias-box {
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 15px;
+  background: rgba(127, 140, 255, 0.2);
+  border: 2px solid var(--acento);
+}
+
+.dias-box span {
+  display: block;
+  margin-bottom: -0.7rem;
+  font-size: 2.1rem;
+  font-weight: 700;
+}
+
+.dias-box small {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+/* Nota destacada */
+.nota-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 20px 20px;
+  padding: 15px 35px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--acento), var(--rosa));
+  color: #1e1f2b;
+  box-shadow: 0 8px 20px rgba(127, 140, 255, 0.5);
+}
+
+.nota-box small {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.nota-box span {
+  margin-top: 0.5rem;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Resumen */
+.resumen-container {
+  margin-top: 25px;
+}
+
+.resumen-container h4 {
+  margin-bottom: 10px;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #000;
+  font-weight: 800;
+}
+
+.resumen-container p {
+  text-align: justify;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.acciones-libro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  padding-top: 10px;
+  border-top: 1px solid var(--borde);
+}
+
+/* =========================================================
+   OVERLAYS Y MODAL
+   ========================================================= */
+.overlay,
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-overlay {
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.mensaje-carga {
+  padding: 25px 40px;
+  border-radius: 15px;
+  background: rgba(30, 34, 55, 0.9);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-box {
+  width: 300px;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-texto {
+  margin-bottom: 20px;
+  font-size: 1.15rem;
+}
+
+.modal-acciones {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+.login-page {
+  background-image: url("../img/logo.png");
+  background-repeat: no-repeat;
+  background-position: center 0;
+  background-size: 700px;
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
+}
+
+.login-box {
+  width: 320px;
+  padding: 40px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background: transparent;
+  color: #444;
+  font-size: 1.15rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--acento);
+}
+
+.logo {
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.02));
+}
+
+#login-error {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 50, 50, 0.15);
+  border: 1px solid rgba(255, 50, 50, 0.4);
+  color: var(--peligro);
+  font-size: 1rem;
+}
+
+.error_login_oculto {
+  display: none;
+}
+
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+.oculto {
+  display: none !important;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 768px) {
+  .login-page {
+    background-size: 400px;
+  }
+
+  .login-container {
+    padding-top: 100px;
+  }
+
+  .libro-info {
+    margin-top: 2em;
+  }
+}
+
+@media (max-width: 576px) {
+  .buscador {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .buscador input {
+    width: 100%;
+  }
+
+  .top-bar,
+  .botones-derecha {
+    display: block;
+    text-align: center;
+  }
+
+  .top-bar-libro {
+    text-align: center;
+  }
+
+  .form-control {
+    margin-bottom: 1em;
+  }
+
+  .logo-mini {
+    height: 100px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 330px) {
+  .logo-mini {
+    height: 50px;
+  }
+
+  .login-page {
+    height: 250px;
+  }
+}

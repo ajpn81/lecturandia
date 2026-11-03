@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscador de libros</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<!-- ✅ BARRA SUPERIOR -->
+   <div class="top-bar top-bar-top top-bar-libro">
+
+    <div class="top-left-top">
+      <img src="img/logo.png" class="logo-mini" alt="Lecturandia">
+    </div>
+
+    <div class="top-right-top">
+      <span id="usuarioNombre"></span>
+      <button id="btnLogout" class="btn-principal">Salir</button>
+    </div>
+
+  </div>
+<div class="contenedor">
+  
+  <div class="top-bar-buscar">
+    <button id="volver" class="btn-principal">
+      Volver
+    </button>
+    <button id="nuevo" class="btn-principal">
+      Nuevo
+    </button>
+  </div>
+
+  
+  <h1>Buscador de libros</h1>
+
+  <div class="buscador">
+    <input type="text" id="busqueda" placeholder="Busca un libro...">
+    <button id="btnBuscar" class="btn-principal">Buscar</button>
+  </div>
+
+  <div id="resultados"></div>
+
+</div>
+<script type="module" src="js/buscar.js"></script>
+</body>
+</html>

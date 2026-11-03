@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ficha del libro</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ✅ BARRA SUPERIOR -->
+   <div class="top-bar top-bar-top top-bar-libro">
+
+    <div class="top-left-top">
+      <img src="img/logo.png" class="logo-mini" alt="Lecturandia">
+    </div>
+
+    <div class="top-right-top">
+      <span id="usuarioNombre"></span>
+      <button id="btnLogout" class="btn-principal">Salir</button>
+    </div>
+
+  </div>
+
+<div class="contenedor">
+
+  <h1 class="text-center mb-4">Ficha del libro</h1>
+
+  <div class="row align-items-start">
+
+    <!-- PORTADA -->
+    <div class="col-12 col-md-4 text-center mb-4 mb-md-0">
+      <img id="portada" class="img-fluid portada-ficha">
+      <input type="file" id="inputImagen" accept="image/*" style="display:none;">
+      <button id="completarInfo" type="button" class="btn-principal btn-completar">
+        Completar información
+      </button>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="col-12 col-md-8 formulario-ficha">
+
+      <p>
+        <strong>Título del libro:</strong>
+        <input type="text" id="titulo" class="form-control input-custom">
+      </p>
+
+      <p>
+        <strong>Autor:</strong>
+        <input type="text" id="autor" class="form-control input-custom">
+      </p>
+
+      <div class="mb-3">
+        <label class="form-label">Título encontrado</label>
+        <input type="text" id="tituloOriginal" class="form-control input-custom">
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <label class="form-label">Fecha inicio</label>
+          <input type="date" id="fechaInicio" class="form-control input-fecha">
+        </div>
+
+        <div class="col-6">
+          <label class="form-label">Fecha fin</label>
+          <input type="date" id="fechaFin" class="form-control input-fecha">
+        </div>
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label class="form-label">Calificación</label>
+        <input
+          id="valoracion" 
+          class="form-control select-rating" 
+          type="number" 
+          min="0" 
+          max="10" 
+          step="0.5"
+          value="1"
+        >
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Resumen</label>
+        <textarea id="resumen" rows="5" class="form-control input-custom" contenteditable="true"></textarea>
+      </div>
+    </div>
+     <!-- BOTONES -->
+    <div class="acciones-ficha">
+      <button id="volver" type="button" class="btn-principal">
+        Volver
+      </button>
+      <button id="guardar" type="button" class="btn-principal">
+        Guardar
+      </button>
+    </div>
+  </div>
+</div>
+<div id="overlayCarga" class="overlay oculto">  
+  <div class="mensaje-carga">Guardando libro...</div>
+</div>
+
+<script type="module" src="js/ficha.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script>
+
+</body>
+</html>

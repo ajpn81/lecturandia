@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador BCrypt Uno</title>
+</head>
+<body>
+
+    <h2>Generador de contraseñas BCrypt Uno</h2>
+
+    <input id="password" type="text" placeholder="Introduce una contraseña">
+    <button id="btnGenerar">Generar</button>
+
+    <h3>Hash generado:</h3>
+    <pre id="resultado"></pre>
+
+    <!-- 1. Cargar la librería bcryptjs desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+
+    <script>
+        // 2. Asignar bcrypt si viene bajo el namespace bcryptjs o dcodeIO
+        const bcrypt = window.bcryptjs || (window.dcodeIO && window.dcodeIO.bcrypt) || window.bcrypt;
+
+        document.getElementById("btnGenerar").addEventListener("click", generar);
+
+        function generar() {
+            const password = document.getElementById("password").value;
+
+            if (password.trim() === "") {
+                alert("Introduce una contraseña.");
+                return;
+            }
+
+            if (typeof bcrypt === "undefined") {
+                alert("Error: No se ha cargado la librería BCrypt.");
+                return;
+            }
+
+            // Genera el hash con 10 rondas de forma asíncrona para no congelar la UI
+            bcrypt.hash(password, 10, function(err, hash) {
+                if (err) {
+                    alert("Error al generar el hash.");
+                    console.error(err);
+                    return;
+                }
+                document.getElementById("resultado").textContent = hash;
+            });
+        }
+    </script>
+
+</body>
+</html>

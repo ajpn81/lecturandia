@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = `ficha.html?from=leidos`;
   });
 
+
   const inputBusqueda = document.getElementById("busqueda");
 
   inputBusqueda.addEventListener("input", () => {

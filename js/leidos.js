@@ -36,16 +36,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = `ficha.html?from=leidos`;
   });
 
-  //const response = await fetch(`https://lecturandia.onrender.com/libros?usuario=${usuario}`)
-  //const data = await response.json();
-  //let todosLosLibros = data;
-
   const inputBusqueda = document.getElementById("busqueda");
 
   inputBusqueda.addEventListener("input", () => {
     const texto = inputBusqueda.value.toLowerCase();
 
-    const filtrados = todosLosLibros.filter(libro => {
+    const filtrados = data.filter(libro => {
 
       const titulo = libro.titulo?.toLowerCase() || "";
       const autor = libro.autor?.toLowerCase() || "";

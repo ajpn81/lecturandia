@@ -105,11 +105,13 @@
   .panel-b { background: radial-gradient(120% 80% at 50% 0%, var(--b-bg-2), var(--b-bg) 70%); }
 
   /* ---------- Imagen superior, de lado a lado ---------- */
-  .hero {
-    position: relative;
+  .hero img {
+    display: block;
     width: 100%;
-    height: clamp(260px, 100vh, 620px);
-    overflow: hidden;
+    height: auto;
+    max-height: 62vh;
+    object-fit: cover;
+    object-position: center;
   }
   .panel-a .hero { background: linear-gradient(135deg, #6b1a4c, #c4134f); }
   .panel-b .hero { background: linear-gradient(135deg, #0f4a4f, #9a6a10); }
